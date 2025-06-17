@@ -1,16 +1,10 @@
-import React, { useState } from "react";
-
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+import React, { useState, useEffect } from "react";
 
 let redLight = false
 let orangeLight = false
 let greenLight = false
 let oneSecond = ""
 
-
-
-//create your first component
 const Home = () => {
 	const [color, setColor] = useState("");
 	const [clickedText, setClickedText] = useState("Cambiar cada segundo")
@@ -19,16 +13,23 @@ const Home = () => {
 	const [clickedCyanText, setClickedCyanText] = useState("Añadir luz cian")
 	const [clickedCyan, setClickedCyan] = useState("btn btn-info align-self-center m-3")
 
-
 	const red = "0px 0px 35px 20px red"
 	const orange = "0px 0px 35px 20px orange"
 	const green = "0px 0px 35px 20px green"
 	const cyan = "0px 0px 35px 20px cyan"
 
+	useEffect(() => {
+		if (clickedText === "Parar") {
+			oneSecond = setTimeout(lightSwitch, 1000)
+		}
+	}, [color]);
+
 	function lightSwitch() {
 		if (clickedCyanText === "Quitar luz cian") {
+			clearInterval(oneSecond)
 			color === cyan ? setColor(green) : (color === green ? setColor(orange) : (color === orange ? setColor(red) : setColor(cyan)))
 		} else {
+			clearInterval(oneSecond)
 			color === green ? setColor(orange) : (color === orange ? setColor(red) : setColor(green))
 		}
 	}
@@ -37,23 +38,13 @@ const Home = () => {
 		if (clickedText === "Cambiar cada segundo") {
 			setClickedColor("btn btn-danger align-self-center m-3")
 			setClickedText("Parar")
-			// lightSwitch();
-			let i = 0
-
-			oneSecond = setInterval(() => {
-				i++
-				lightSwitch()
-				console.log(i, color)
-			}, 1000)
+			lightSwitch();
 		} else {
 			setClickedColor("btn btn-success align-self-center m-3")
 			setClickedText("Cambiar cada segundo")
 			clearInterval(oneSecond)
 
 		}
-
-
-
 	}
 
 	function addCyan() {
