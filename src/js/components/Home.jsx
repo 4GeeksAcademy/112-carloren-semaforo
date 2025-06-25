@@ -9,7 +9,6 @@ const Home = () => {
 	const [color, setColor] = useState("");
 	const [clickedText, setClickedText] = useState("Cambiar cada segundo")
 	const [clickedColor, setClickedColor] = useState("btn btn-success align-self-center m-3")
-	const [hiddenCyan, setHiddenCyan] = useState(true)
 	const [clickedCyanText, setClickedCyanText] = useState("Añadir luz cian")
 	const [clickedCyan, setClickedCyan] = useState("btn btn-info align-self-center m-3")
 
@@ -55,7 +54,6 @@ const Home = () => {
 		} else {
 			setClickedCyanText("Añadir luz cian")
 			setClickedCyan("btn btn-info align-self-center m-3")
-			setHiddenCyan(true)
 			document.getElementById("cyan").hidden = true
 		}
 	}
